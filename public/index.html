@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f6f1" />
+    <meta
+      name="description"
+      content="พื้นที่ฝึกภาษาอังกฤษจากการฟัง พร้อมจดโน้ตและติดตามความสม่ำเสมอ"
+    />
+    <title>GoodEar — English listening practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="GoodEar home">
+          <span class="brand-mark" aria-hidden="true">g</span>
+          <span>good<span class="brand-accent">ear</span></span>
+        </a>
+        <span class="topbar-note">ฟังวันละนิด เก่งขึ้นทุกวัน</span>
+      </header>
+
+      <main>
+        <section id="auth-view" class="auth-layout">
+          <div class="intro-panel">
+            <p class="eyebrow">YOUR DAILY LISTENING SPACE</p>
+            <h1>Small listens.<br /><span>Big progress.</span></h1>
+            <p class="intro-copy">
+              ฝึกฟังภาษาอังกฤษในจังหวะของคุณ จดสิ่งที่ได้เรียนรู้
+              แล้วค่อย ๆ สร้างความสม่ำเสมอในทุกวัน
+            </p>
+            <div class="intro-stats" aria-label="วิธีเรียน">
+              <span><b>01</b> เลือกเสียง</span>
+              <span><b>02</b> ตั้งใจฟัง</span>
+              <span><b>03</b> จดสิ่งที่ได้</span>
+            </div>
+            <div class="decor-orbit" aria-hidden="true"><span>♫</span></div>
+          </div>
+
+          <div class="auth-card">
+            <p class="eyebrow">WELCOME TO GOOD<span class="brand-accent">EAR</span></p>
+            <h2 id="auth-title">กลับมาเรียนต่อ</h2>
+            <p id="auth-description" class="muted">เข้าสู่ระบบเพื่อบันทึกความก้าวหน้าของคุณ</p>
+            <div id="setup-message" class="notice notice-warn" role="status" hidden></div>
+            <button id="google-button" class="button button-google" type="button">
+              <span class="google-g" aria-hidden="true">G</span>
+              เข้าสู่ระบบด้วย Google
+            </button>
+            <div class="divider"><span>หรือใช้อีเมล</span></div>
+            <form id="auth-form">
+              <label for="email">อีเมล</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <label for="password">รหัสผ่าน</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                minlength="6"
+                placeholder="อย่างน้อย 6 ตัวอักษร"
+                required
+              />
+              <p id="auth-message" class="form-message" role="alert" aria-live="polite"></p>
+              <button id="email-submit" class="button button-primary full-width" type="submit">เข้าสู่ระบบ</button>
+            </form>
+            <p class="auth-switch">
+              <span id="auth-switch-copy">ยังไม่มีบัญชี?</span>
+              <button id="auth-switch" class="text-button" type="button">สมัครสมาชิก</button>
+            </p>
+          </div>
+        </section>
+
+        <section id="app-view" hidden>
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow">YOUR LEARNING DASHBOARD</p>
+              <h1>สวัสดี, <span id="user-name">นักเรียน</span> <span class="wave">✦</span></h1>
+              <p class="muted">วันนี้มาฝึกฟังภาษาอังกฤษกันสักนิดนะ</p>
+            </div>
+            <div class="account-actions">
+              <span id="today-label" class="today-label"></span>
+              <button id="signout-button" class="button button-quiet" type="button">ออกจากระบบ</button>
+            </div>
+          </div>
+
+          <div id="app-message" class="notice" role="status" aria-live="polite" hidden></div>
+
+          <section class="stats-grid" aria-label="สถิติการเรียน">
+            <article class="stat-card stat-card-dark">
+              <div class="stat-icon">♫</div>
+              <p>ฟังจบทั้งหมด</p>
+              <strong id="total-listens">0</strong>
+              <span>ครั้งที่ฟังจบ</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon stat-icon-lime">✓</div>
+              <p>วันที่เรียนเดือนนี้</p>
+              <strong id="study-days">0</strong>
+              <span>วันที่มีการฟัง</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon stat-icon-peach">↗</div>
+              <p>วันที่ขาดเรียนเดือนนี้</p>
+              <strong id="missed-days">0</strong>
+              <span>เฉพาะวันธรรมดาที่ผ่านมา</span>
+            </article>
+            <article class="stat-card stat-card-streak">
+              <div class="stat-icon stat-icon-orange">✦</div>
+              <p>สถิติเรียนต่อเนื่อง</p>
+              <strong><span id="streak-days">0</span><small> วัน</small></strong>
+              <span>นับจากวันที่เรียนติดกัน</span>
+            </article>
+          </section>
+
+          <section class="content-grid">
+            <article class="panel activity-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">KEEP YOUR RHYTHM</p>
+                  <h2>สัปดาห์นี้ของคุณ</h2>
+                </div>
+                <button id="checkin-button" class="button button-checkin" type="button">เช็คอินวันนี้ <span>→</span></button>
+              </div>
+              <div id="week-chart" class="week-chart" aria-label="จำนวนครั้งที่ฟังจบในสัปดาห์นี้"></div>
+              <div class="activity-legend">
+                <span><i class="legend-dot legend-listen"></i>ฟังจบ</span>
+                <span><i class="legend-dot legend-checkin"></i>เช็คอิน</span>
+              </div>
+              <p id="checkin-status" class="checkin-status"></p>
+            </article>
+
+            <article class="panel tip-panel">
+              <div class="tip-mark" aria-hidden="true">“</div>
+              <p class="eyebrow">A GENTLE REMINDER</p>
+              <h2>ความสม่ำเสมอ<br />สำคัญกว่าความสมบูรณ์แบบ</h2>
+              <p>ฟังซ้ำได้ หยุดพักได้ ทุกครั้งที่กลับมาเรียนคือความก้าวหน้า</p>
+              <span class="tip-spark" aria-hidden="true">✳</span>
+            </article>
+          </section>
+
+          <section class="panel listening-panel">
+            <div class="panel-heading listening-heading">
+              <div>
+                <p class="eyebrow">LISTEN & LEARN</p>
+                <h2>มุมฝึกฟังของคุณ</h2>
+                <p class="muted">เลือกเสียง ตั้งใจฟัง แล้วจดคำหรือประโยคที่อยากจำ</p>
+              </div>
+              <label class="button button-outline upload-button" for="audio-files">＋ เพิ่มไฟล์เสียง</label>
+              <input id="audio-files" type="file" accept="audio/*" multiple hidden />
+            </div>
+            <div class="audio-workspace">
+              <div class="track-column">
+                <div class="track-list-heading">
+                  <span>รายการเสียง</span>
+                  <span id="track-count" class="track-count">0</span>
+                </div>
+                <div id="track-list" class="track-list"></div>
+              </div>
+              <div class="player-column">
+                <div id="empty-player" class="empty-player">
+                  <div class="empty-disc" aria-hidden="true">♫</div>
+                  <h3>เลือกเสียงที่อยากฝึก</h3>
+                  <p>เพิ่มไฟล์เสียงจากเครื่อง หรือใส่ไฟล์ไว้ในโฟลเดอร์ audio ของเว็บ</p>
+                </div>
+                <div id="active-player" class="active-player" hidden>
+                  <div class="player-cover" aria-hidden="true"><span>♫</span><i></i><i></i><i></i></div>
+                  <p class="eyebrow">NOW PLAYING</p>
+                  <h3 id="active-track-name"></h3>
+                  <audio id="audio-player" controls preload="metadata"></audio>
+                  <p id="track-listens" class="track-listens"></p>
+                  <label for="track-note" class="note-label">โน้ตของฉัน</label>
+                  <textarea id="track-note" rows="3" placeholder="คำศัพท์ ประโยค หรือสิ่งที่สังเกตได้..."></textarea>
+                  <div class="note-footer">
+                    <span id="note-status" class="muted"></span>
+                    <button id="save-note" class="button button-primary" type="button">บันทึกโน้ต</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <footer class="footer-note">Made for your next little breakthrough <span>✦</span></footer>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
